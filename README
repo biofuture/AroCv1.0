@@ -1,1 +1,33 @@
 AroC is a fast and accurate software package to estimate the cell number
+
+    Author Xiao-tao JIANG
+    Email: biofuture.jiang@gmail.com
+    Date 24/10/2016
+
+===>For 16S amplicon microbial communities
+    perl AROC.pl -t <otu-table-with-tax> -o <output.aroc.txt>  -h [help information]
+
+    -t the otu table with columns are samples and rows are OTUs, the end column should be greengen format taxonomy annotation for that OTUs
+    -o the text format file contains aroc for each sample in otu table
+ 
+===>For metagenomics sequencing data
+    perl AROC.pl -1 <1.fq> -2 <2.fq> -U <single.fq>  -m <s/m> -o <aroc.txt> -a [bowtie2/usearch] -b [bowtie2/diamond] -n [threads number] -h [help information] 
+
+    -m s/m; s represnts by extracting 16S from metagenomics data and then using the Copyrighter copy number database to calculate the aroc; m represents using universal single-copy phylogenetic marker gene to calculate the aroc (default m)  
+    -1 pair-end fastq/fasta 1
+    -2 pair-end fastq.fasta 2
+    -U single-end fastq/fasta
+
+    For metagenomics data, the work is composed of two parts, the first part is searching reads from 16SrDNA genes, to count the total full length 16S numbers or to extract the hyper variable regions to g et the community composition and abundance information. The second part is to extract those reads orignial from 40 universal single copy phylogenetic marker genes (COGs, ref: ) or 30 essential single copy genes (KOs, ref: ). 
+
+    Alignment methods for extracting 16S including: usearch and bowtie2 
+    Methods to calculate the essential single copy genes: bowtie2, or diamond (blastx searching) 
+    This version -a and -b are blocked.      
+
+EXample: 
+    perl AROC.pl -1 test_1.fq -2 test_2.fq -m m -o test.aroc.txt -n 8
+   
+    perl AROC.pl -1 test_1.fq -2 test_2.fq -U test.single.fq -m m -o test.aroc.txt -n 8 -f fq
+
+    By extracting 16S hyper variable regions and CopyRighter database to estimate the ARCN 
+    perl AROC.pl -1 test_1.fq -2 test_2.fq -m s -o test.aroc.txt -n 8 
