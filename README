@@ -18,7 +18,7 @@ AroC is a fast and accurate software package to estimate the cell number
     -2 pair-end fastq.fasta 2
     -U single-end fastq/fasta
 
-    For metagenomics data, the work is composed of two parts, the first part is searching reads from 16SrDNA genes, to count the total full length 16S numbers or to extract the hyper variable regions to g et the community composition and abundance information. The second part is to extract those reads orignial from 40 universal single copy phylogenetic marker genes (COGs, ref: ) or 30 essential single copy genes (KOs, ref: ). 
+    For metagenomics data, the work is composed of two parts, the first part is searching reads from 16SrDNA genes, to count the total full length 16S numbers or to extract the hyper variable regions to g et the community composition and abundance information. The second part is to extract those reads orignial from 30 universal single copy phylogenetic marker genes (KOs, ref: ) . 
 
     Alignment methods for extracting 16S including: usearch and bowtie2 
     Methods to calculate the essential single copy genes: bowtie2, or diamond (blastx searching) 
